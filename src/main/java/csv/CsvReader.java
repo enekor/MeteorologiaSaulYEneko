@@ -1,36 +1,48 @@
 package csv;
 
-import Objetos.CalidadAire;
-import Objetos.DatosMeteorologicos;
-import lombok.NonNull;
+import Objetos.*;
+
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
+import java.util.*;
+
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
 public class CsvReader {
 
     List<String> calidadAireList;
     List<String> datosMeteorologicosList;
+    List<String> calidadAireEstacionesList;
+    List<String> calidadAireZonasList;
+
     List<CalidadAire> calidadAireObjetosList = new ArrayList<>();
     List<DatosMeteorologicos> datosMeteorologicosObjetosList = new ArrayList<>();
+    List<CalidadAireEstaciones> calidadAireEstacionesObjetosList = new ArrayList<>();
+    List<CalidadAireZonas> calidadAireZonasObjetosList = new ArrayList<>();
 
-    private void crearLista(){
+    private void crearListas(){
         String actualPath = System.getProperty("user.dir");
-        String pathAire = actualPath+ File.separator+"Datos"+File.separator+"Calidad_aire_datos_mes.csv";
+        String pathAire = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_mes.csv";
         String pathMeteo = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_meteo_mes.csv";
+        String pathEstaciones = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_estaciones.csv";
+        String pathZonas = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_zonas.csv";
+
         Path csvAire = Paths.get(pathAire);
         Path csvMeteo = Paths.get(pathMeteo);
+        Path csvEstaciones = Paths.get(pathEstaciones);
+        Path csvZonas = Paths.get(pathZonas);
 
         try {
             calidadAireList = Files.readAllLines(csvAire);
             datosMeteorologicosList = Files.readAllLines(csvMeteo);
+            calidadAireEstacionesList = Files.readAllLines(csvEstaciones, ISO_8859_1);
+            calidadAireZonasList = Files.readAllLines(csvZonas,ISO_8859_1);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,57 +51,101 @@ public class CsvReader {
 
     }
 
-    private void crearObjetos(){
+    private void crearObjetos1(){
         /*
             Start filling calidadAireObjetosList with values from csv
         */
-        for(int i=0;i<calidadAireList.size();i++) {
-            StringTokenizer st = new StringTokenizer(calidadAireList.get(i), ";");
-            System.out.println(st.countTokens());
-            while (st.hasMoreTokens()) {
-               calidadAireObjetosList.add(CalidadAire.builder().provincia(st.nextToken()).municipio(st.nextToken()).
-                        estacion(st.nextToken()).magnitud(st.nextToken()).punto_muestreo(st.nextToken()).ano(st.nextToken()).mes(st.nextToken()).
-                        dia(st.nextToken()).h01(st.nextToken()).v01(st.nextToken()).h02(st.nextToken()).v02(st.nextToken()).h03(st.nextToken()).
-                        v03(st.nextToken()).h04(st.nextToken()).v04(st.nextToken()).h05(st.nextToken()).v05(st.nextToken()).h06(st.nextToken()).
-                        v06(st.nextToken()).h07(st.nextToken()).v07(st.nextToken()).h08(st.nextToken()).v08(st.nextToken()).h09(st.nextToken()).
-                        v09(st.nextToken()).h10(st.nextToken()).v10(st.nextToken()).h11(st.nextToken()).v11(st.nextToken()).h12(st.nextToken()).
-                        v12(st.nextToken()).h13(st.nextToken()).v13(st.nextToken()).h14(st.nextToken()).v14(st.nextToken()).h15(st.nextToken()).
-                        v15(st.nextToken()).h16(st.nextToken()).v16(st.nextToken()).h17(st.nextToken()).v17(st.nextToken()).h18(st.nextToken()).
-                        v18(st.nextToken()).h19(st.nextToken()).v19(st.nextToken()).h20(st.nextToken()).v20(st.nextToken()).h21(st.nextToken()).
-                        v21(st.nextToken()).h22(st.nextToken()).v22(st.nextToken()).h23(st.nextToken()).v23(st.nextToken()).h24(st.nextToken()).
-                        v24(st.nextToken()).build());
+        for(String a : calidadAireList){
+
+            Scanner sc=new Scanner(a);
+            sc.useDelimiter(";");
+            while(sc.hasNext()){
+                calidadAireObjetosList.add(CalidadAire.builder().provincia(sc.next()).municipio(sc.next()).
+                        estacion(sc.next()).magnitud(sc.next()).punto_muestreo(sc.next()).ano(sc.next()).mes(sc.next()).
+                        dia(sc.next()).h01(sc.next()).v01(sc.next()).h02(sc.next()).v02(sc.next()).h03(sc.next()).
+                        v03(sc.next()).h04(sc.next()).v04(sc.next()).h05(sc.next()).v05(sc.next()).h06(sc.next()).
+                        v06(sc.next()).h07(sc.next()).v07(sc.next()).h08(sc.next()).v08(sc.next()).h09(sc.next()).
+                        v09(sc.next()).h10(sc.next()).v10(sc.next()).h11(sc.next()).v11(sc.next()).h12(sc.next()).
+                        v12(sc.next()).h13(sc.next()).v13(sc.next()).h14(sc.next()).v14(sc.next()).h15(sc.next()).
+                        v15(sc.next()).h16(sc.next()).v16(sc.next()).h17(sc.next()).v17(sc.next()).h18(sc.next()).
+                        v18(sc.next()).h19(sc.next()).v19(sc.next()).h20(sc.next()).v20(sc.next()).h21(sc.next()).
+                        v21(sc.next()).h22(sc.next()).v22(sc.next()).h23(sc.next()).v23(sc.next()).h24(sc.next()).
+                        v24(sc.next()).build());
             }
-            System.out.println(calidadAireObjetosList.size());
+
         }
+        System.out.println("datos de calidad de aire aniadidos: "+calidadAireObjetosList.size());
 
 
         /*
             start filling datosMeteorologicosObjetosList with values from csv
-         */
-        for(int i=0;i<datosMeteorologicosList.size();i++) {
-            StringTokenizer st = new StringTokenizer(calidadAireList.get(i), ";");
-            System.out.println(st.countTokens());
-            while (st.hasMoreTokens()) {
-                datosMeteorologicosObjetosList.add(DatosMeteorologicos.builder().provincia(st.nextToken()).municipio(st.nextToken()).
-                        estacion(st.nextToken()).magnitud(st.nextToken()).punto_muestreo(st.nextToken()).ano(st.nextToken()).mes(st.nextToken()).
-                        dia(st.nextToken()).h01(st.nextToken()).v01(st.nextToken()).h02(st.nextToken()).v02(st.nextToken()).h03(st.nextToken()).
-                        v03(st.nextToken()).h04(st.nextToken()).v04(st.nextToken()).h05(st.nextToken()).v05(st.nextToken()).h06(st.nextToken()).
-                        v06(st.nextToken()).h07(st.nextToken()).v07(st.nextToken()).h08(st.nextToken()).v08(st.nextToken()).h09(st.nextToken()).
-                        v09(st.nextToken()).h10(st.nextToken()).v10(st.nextToken()).h11(st.nextToken()).v11(st.nextToken()).h12(st.nextToken()).
-                        v12(st.nextToken()).h13(st.nextToken()).v13(st.nextToken()).h14(st.nextToken()).v14(st.nextToken()).h15(st.nextToken()).
-                        v15(st.nextToken()).h16(st.nextToken()).v16(st.nextToken()).h17(st.nextToken()).v17(st.nextToken()).h18(st.nextToken()).
-                        v18(st.nextToken()).h19(st.nextToken()).v19(st.nextToken()).h20(st.nextToken()).v20(st.nextToken()).h21(st.nextToken()).
-                        v21(st.nextToken()).h22(st.nextToken()).v22(st.nextToken()).h23(st.nextToken()).v23(st.nextToken()).h24(st.nextToken()).
-                        v24(st.nextToken()).build());
+        */
+        for(String a : datosMeteorologicosList){
+
+            Scanner sc=new Scanner(a);
+            sc.useDelimiter(";");
+            while(sc.hasNext()){
+                datosMeteorologicosObjetosList.add(DatosMeteorologicos.builder().provincia(sc.next()).municipio(sc.next()).
+                        estacion(sc.next()).magnitud(sc.next()).punto_muestreo(sc.next()).ano(sc.next()).mes(sc.next()).
+                        dia(sc.next()).h01(sc.next()).v01(sc.next()).h02(sc.next()).v02(sc.next()).h03(sc.next()).
+                        v03(sc.next()).h04(sc.next()).v04(sc.next()).h05(sc.next()).v05(sc.next()).h06(sc.next()).
+                        v06(sc.next()).h07(sc.next()).v07(sc.next()).h08(sc.next()).v08(sc.next()).h09(sc.next()).
+                        v09(sc.next()).h10(sc.next()).v10(sc.next()).h11(sc.next()).v11(sc.next()).h12(sc.next()).
+                        v12(sc.next()).h13(sc.next()).v13(sc.next()).h14(sc.next()).v14(sc.next()).h15(sc.next()).
+                        v15(sc.next()).h16(sc.next()).v16(sc.next()).h17(sc.next()).v17(sc.next()).h18(sc.next()).
+                        v18(sc.next()).h19(sc.next()).v19(sc.next()).h20(sc.next()).v20(sc.next()).h21(sc.next()).
+                        v21(sc.next()).h22(sc.next()).v22(sc.next()).h23(sc.next()).v23(sc.next()).h24(sc.next()).
+                        v24(sc.next()).build());
             }
-            System.out.println(calidadAireObjetosList.size());
-        }
+
+        }System.out.println("datos meteorologicos aniadidos: "+datosMeteorologicosObjetosList.size());
+    }
+
+    private void crearObjetos2(){
+        /*
+            Start filling calidadAireEstacionesList with values from csv
+        */
+        for(String a : calidadAireEstacionesList){
+            try {
+                Scanner sc = new Scanner(a);
+                sc.useDelimiter(";");
+                while (sc.hasNext()) {
+                    calidadAireEstacionesObjetosList.add(CalidadAireEstaciones.builder().estacion_codigo(sc.next()).zona_calidad_aire_descripcion(sc.next()).estacion_municipio(sc.next()).
+                            estacion_fecha_alta(sc.next()).estacion_tipo_area(sc.next()).estacion_tipo_estacion(sc.next()).estacion_subarea_rural(sc.next()).estacion_direccion_postal(sc.next()).
+                            estacion_coord_UTM_ETRS89_x(sc.next()).estacion_coord_UTM_ETRS89_y(sc.next()).estacion_coord_longitud(sc.next()).
+                            estacion_coord_latitud(sc.next()).estacion_altitud(sc.next()).estacion_analizador_NO(sc.next()).estacion_analizador_NO2(sc.next()).
+                            estacion_analizador_PM10(sc.next()).estacion_analizador_PM2_5(sc.next()).estacion_analizador_O3(sc.next()).estacion_analizador_TOL(sc.next()).
+                            estacion_analizador_BEN(sc.next()).estacion_analizador_XIL(sc.next()).estacion_analizador_CO(sc.next()).estacion_analizador_SO2(sc.next()).
+                            estacion_analizador_HCT(sc.next()).estacion_analizador_HNM(sc.next()).build());
+                    System.out.println("linea metida");
+                }
+            }catch(NoSuchElementException e){
+                e.printStackTrace();
+            }
+
+        }System.out.println("datos de calidad de aire en estaciones: "+calidadAireEstacionesObjetosList.size());
+
+
+        /*
+            start filling calidadAireZonasList with values from csv
+        */
+        for(String a : calidadAireZonasList){
+
+            Scanner sc=new Scanner(a);
+            sc.useDelimiter(";");
+            while(sc.hasNext()){
+                calidadAireZonasObjetosList.add(CalidadAireZonas.builder().zona_calidad_aire_codigo(sc.next()).zona_calidad_aire_descripcion(sc.next()).
+                        zona_calidad_aire_municipio(sc.next()).build());
+            }
+
+        }System.out.println("datos de zonas: "+datosMeteorologicosObjetosList.size());
     }
 
     public static void main(String[] args) {
         CsvReader c = new CsvReader();
-        c.crearLista();
-        c.crearObjetos();
+        c.crearListas();
+        c.crearObjetos1();
+        //c.crearObjetos2();
     }
 
 }

@@ -1,8 +1,10 @@
 package Objetos;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.NonNull;
 
+@Data
 @Builder
 public class DatosMeteorologicos {
     @NonNull String provincia,municipio,estacion,magnitud,punto_muestreo,ano,mes,dia,h01,v01,h02,

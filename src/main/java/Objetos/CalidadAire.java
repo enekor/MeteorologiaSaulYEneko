@@ -1,7 +1,9 @@
 package Objetos;
 
 import lombok.Builder;
+import lombok.Data;
 
+@Data
 @Builder
 public class CalidadAire {
     String provincia,municipio,estacion,magnitud,punto_muestreo,ano,mes,
