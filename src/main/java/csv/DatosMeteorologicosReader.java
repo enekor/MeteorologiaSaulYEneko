@@ -1,6 +1,7 @@
 package csv;
 
 import Objetos.DatosMeteorologicos;
+import lombok.Data;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,11 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DatosMeteorologicosReader implements Runnable{
+@Data
+public class DatosMeteorologicosReader extends Thread{
 
     List<String> datosMeteorologicosList;
     List<DatosMeteorologicos> datosMeteorologicosObjetosList = new ArrayList<>();
 
+    public DatosMeteorologicosReader(){
+        crearListaDatos();
+    }
+
+    /**
+     * Creamos una lista de Strings con las líneas del csv, es decir, la línea 1 del csv esta metida dentro del String de la position 0 de la lista, y asi hasta el final
+     */
     private void crearListaDatos(){
         String actualPath = System.getProperty("user.dir");
         String pathMeteo = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_meteo_mes.csv";
@@ -28,10 +37,11 @@ public class DatosMeteorologicosReader implements Runnable{
         }
     }
 
+    /**
+     * a partir de las Strings de la Lista de Strings calidadAireList creamos objetos CalidadAire que guardara uno a uno los valores de cada línea, en sus variables correspondientes
+     * facilitando asi el acceso y posterior filtrado de dichos objetos
+     */
     private void crearObjetoDatos(){
-        /*
-            start filling datosMeteorologicosObjetosList with values from csv
-        */
         for(String a : datosMeteorologicosList){
 
             Scanner sc=new Scanner(a);
@@ -49,8 +59,8 @@ public class DatosMeteorologicosReader implements Runnable{
                         v21(sc.next()).h22(sc.next()).v22(sc.next()).h23(sc.next()).v23(sc.next()).h24(sc.next()).
                         v24(sc.next()).build());
             }
-
-        }System.out.println("datos meteorologicos aniadidos: "+datosMeteorologicosObjetosList.size());
+            System.out.println("a");
+        }
     }
 
     @Override

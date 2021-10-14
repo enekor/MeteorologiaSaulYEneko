@@ -1,6 +1,7 @@
 package csv;
 
 import Objetos.*;
+import lombok.Data;
 
 
 import java.io.File;
@@ -10,14 +11,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class CalidadAireReader implements Runnable {
+@Data
+public class CalidadAireReader extends Thread {
 
     List<String> calidadAireList;
-
-
     List<CalidadAire> calidadAireObjetosList = new ArrayList<>();
 
+    public CalidadAireReader(){
+        crearListaCalidadAire();
+    }
 
+
+    /**
+     * Creamos una lista de Strings con las líneas del csv, es decir, la línea 1 del csv esta metida dentro del String de la position 0 de la lista, y asi hasta el final
+     */
     private void crearListaCalidadAire(){
         String actualPath = System.getProperty("user.dir");
         String pathAire = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_mes.csv";
@@ -35,6 +42,10 @@ public class CalidadAireReader implements Runnable {
 
     }
 
+    /**
+     * a partir de las Strings de la Lista de Strings calidadAireList creamos objetos CalidadAire que guardara uno a uno los valores de cada línea, en sus variables correspondientes
+     * facilitando asi el acceso y posterior filtrado de dichos objetos
+     */
     private void crearObjetoCalidad(){
         /*
             Start filling calidadAireObjetosList with values from csv
@@ -56,12 +67,8 @@ public class CalidadAireReader implements Runnable {
                         v21(sc.next()).h22(sc.next()).v22(sc.next()).h23(sc.next()).v23(sc.next()).h24(sc.next()).
                         v24(sc.next()).build());
             }
-
+            System.out.println("b");
         }
-        System.out.println("datos de calidad de aire aniadidos: "+calidadAireObjetosList.size());
-
-
-
     }
 
 

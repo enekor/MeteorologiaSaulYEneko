@@ -11,6 +11,4 @@ public class CalidadAire {
             v08,h09,v09,h10,v10,h11,v11,h12,v12,h13,v13,h14,v14,h15,v15,h16,
             v16,h17,v17,h18,v18,h19,v19,h20,v20,h21,v21,h22,v22,h23,v23,h24,v24;
 
-
-
 }
