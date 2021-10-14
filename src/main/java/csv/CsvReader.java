@@ -6,11 +6,11 @@ import Objetos.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
@@ -21,17 +21,17 @@ public class CsvReader {
     List<String> calidadAireEstacionesList;
     List<String> calidadAireZonasList;
 
-    List<CalidadAire> calidadAireObjetosList = new ArrayList<>();
-    List<DatosMeteorologicos> datosMeteorologicosObjetosList = new ArrayList<>();
+    static List<CalidadAire> calidadAireObjetosList = new ArrayList<>();
+    static List<DatosMeteorologicos> datosMeteorologicosObjetosList = new ArrayList<>();
     List<CalidadAireEstaciones> calidadAireEstacionesObjetosList = new ArrayList<>();
     List<CalidadAireZonas> calidadAireZonasObjetosList = new ArrayList<>();
 
     private void crearListas(){
         String actualPath = System.getProperty("user.dir");
-        String pathAire = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_mes.csv";
-        String pathMeteo = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_meteo_mes.csv";
-        String pathEstaciones = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_estaciones.csv";
-        String pathZonas = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_zonas.csv";
+        String pathAire = actualPath+File.separator+"MeteorologiaSaulYEneko"+File.separator+"Datos"+File.separator+"calidad_aire_datos_mes.csv";
+        String pathMeteo = actualPath+ File.separator+"MeteorologiaSaulYEneko"+File.separator+"Datos"+File.separator+"calidad_aire_datos_meteo_mes.csv";
+        String pathEstaciones = actualPath+ File.separator+"MeteorologiaSaulYEneko"+File.separator+"Datos"+File.separator+"calidad_aire_estaciones.csv";
+        String pathZonas = actualPath+ File.separator+"MeteorologiaSaulYEneko"+File.separator+"Datos"+File.separator+"calidad_aire_zonas.csv";
 
         Path csvAire = Paths.get(pathAire);
         Path csvMeteo = Paths.get(pathMeteo);
@@ -41,13 +41,14 @@ public class CsvReader {
         try {
             calidadAireList = Files.readAllLines(csvAire);
             datosMeteorologicosList = Files.readAllLines(csvMeteo);
-            calidadAireEstacionesList = Files.readAllLines(csvEstaciones, ISO_8859_1);
-            calidadAireZonasList = Files.readAllLines(csvZonas,ISO_8859_1);
+            calidadAireEstacionesList = Files.readAllLines(csvEstaciones, Charset.forName("Cp1252"));
+            calidadAireZonasList = Files.readAllLines(csvZonas, Charset.forName("Cp1252"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         //datosMeteorologicosList.forEach(System.out::println);
+
 
     }
 
@@ -75,7 +76,6 @@ public class CsvReader {
 
         }
         System.out.println("datos de calidad de aire aniadidos: "+calidadAireObjetosList.size());
-
 
         /*
             start filling datosMeteorologicosObjetosList with values from csv
@@ -105,11 +105,12 @@ public class CsvReader {
         /*
             Start filling calidadAireEstacionesList with values from csv
         */
+        /*
         for(String a : calidadAireEstacionesList){
-            try {
+
                 Scanner sc = new Scanner(a);
                 sc.useDelimiter(";");
-                while (sc.hasNext()) {
+                while(sc.hasNext()){
                     calidadAireEstacionesObjetosList.add(CalidadAireEstaciones.builder().estacion_codigo(sc.next()).zona_calidad_aire_descripcion(sc.next()).estacion_municipio(sc.next()).
                             estacion_fecha_alta(sc.next()).estacion_tipo_area(sc.next()).estacion_tipo_estacion(sc.next()).estacion_subarea_rural(sc.next()).estacion_direccion_postal(sc.next()).
                             estacion_coord_UTM_ETRS89_x(sc.next()).estacion_coord_UTM_ETRS89_y(sc.next()).estacion_coord_longitud(sc.next()).
@@ -117,15 +118,9 @@ public class CsvReader {
                             estacion_analizador_PM10(sc.next()).estacion_analizador_PM2_5(sc.next()).estacion_analizador_O3(sc.next()).estacion_analizador_TOL(sc.next()).
                             estacion_analizador_BEN(sc.next()).estacion_analizador_XIL(sc.next()).estacion_analizador_CO(sc.next()).estacion_analizador_SO2(sc.next()).
                             estacion_analizador_HCT(sc.next()).estacion_analizador_HNM(sc.next()).build());
-                    System.out.println("linea metida");
                 }
-            }catch(NoSuchElementException e){
-                e.printStackTrace();
-            }
-
-        }System.out.println("datos de calidad de aire en estaciones: "+calidadAireEstacionesObjetosList.size());
-
-
+            }System.out.println("datos de calidad de aire en estaciones: "+calidadAireEstacionesObjetosList.size());
+*/
         /*
             start filling calidadAireZonasList with values from csv
         */
@@ -138,14 +133,63 @@ public class CsvReader {
                         zona_calidad_aire_municipio(sc.next()).build());
             }
 
-        }System.out.println("datos de zonas: "+datosMeteorologicosObjetosList.size());
+        }System.out.println("datos de zonas: "+calidadAireZonasList.size());
     }
+    /**
+     * Metodo que filtra datosMeteorologicosObjetosList y returnea solo los que sean iguales a el muncipio pasado por parametro
+     * @param municipio
+     * @return
+     */
+    public static List<DatosMeteorologicos> datosMunicipioCalidadAireMeteo(String municipio) {
+        return datosMeteorologicosObjetosList.stream().filter(p -> p.getMunicipio().equalsIgnoreCase(municipio)).collect(Collectors.toList());
+    }
+    /**
+     * Metodo que printea la lista de los datos de Datos Meteorologicos pasando un municipio por parametro, llama al metodo datosMunicipioCalidadAireMeteo
+     * @param municipio
+     */
+    public static void datosPorMunicipioCalidadAireMeteo(String municipio) {
+        System.out.println("Datos de la ciudad: " +municipio);
+        List<DatosMeteorologicos> datos = datosMunicipioCalidadAireMeteo(municipio);
+
+        datos.stream().forEach(System.out::println);
+
+    }
+    /**
+     * Metodo que filtra calidadAireObjetosList y returnea solo los que sean iguales a el muncipio pasado por parametro
+     * @param municipio
+     * @return
+     */
+    public static List<CalidadAire> datosMunicipioCalidadAire(String municipio) {
+        return calidadAireObjetosList.stream().filter(p -> p.getMunicipio().equalsIgnoreCase(municipio)).collect(Collectors.toList());
+    }
+    /**
+     * Metodo que printea la lista de los datos de Calidad Aire pasando un municipio por parametro, llama al metodo datosMunicipioCalidadAire
+     * @param municipio
+     */
+    public static void datosPorMunicipioCalidadAire(String municipio) {
+        System.out.println("Datos de la ciudad: " +municipio);
+        List<CalidadAire> datos = datosMunicipioCalidadAire(municipio);
+
+        datos.stream().forEach(System.out::println);
+
+    }
+    /**
+     * Metodo que imprime los datos del municipio que hayamos elegido
+     */
+    private void imprimirDatosMeteorologicos(){
+        //datosPorMunicipioCalidadAire("9");
+        //datosPorMunicipioCalidadAireMeteo("9");
+    }
+
 
     public static void main(String[] args) {
         CsvReader c = new CsvReader();
         c.crearListas();
         c.crearObjetos1();
-        //c.crearObjetos2();
+        c.crearObjetos2();
+        //c.imprimirDatosMeteorologicos();
+
+
     }
 
 }
