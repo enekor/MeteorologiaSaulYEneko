@@ -1,6 +1,7 @@
 package csv;
 
 import Objetos.DatosMeteorologicos;
+import lombok.Data;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Data
 public class DatosMeteorologicosReader implements Runnable{
 
     List<String> datosMeteorologicosList;
@@ -29,9 +31,9 @@ public class DatosMeteorologicosReader implements Runnable{
     }
 
     private void crearObjetoDatos(){
-        /*
-            start filling datosMeteorologicosObjetosList with values from csv
-        */
+
+        crearListaDatos();
+
         for(String a : datosMeteorologicosList){
 
             Scanner sc=new Scanner(a);
@@ -49,6 +51,7 @@ public class DatosMeteorologicosReader implements Runnable{
                         v21(sc.next()).h22(sc.next()).v22(sc.next()).h23(sc.next()).v23(sc.next()).h24(sc.next()).
                         v24(sc.next()).build());
             }
+            System.out.println("b");
 
         }System.out.println("datos meteorologicos aniadidos: "+datosMeteorologicosObjetosList.size());
     }
