@@ -135,51 +135,20 @@ public class CsvReader {
 
         }System.out.println("datos de zonas: "+calidadAireZonasList.size());
     }
-    /**
-     * Metodo que filtra datosMeteorologicosObjetosList y returnea solo los que sean iguales a el muncipio pasado por parametro
-     * @param municipio
-     * @return
-     */
-    public static List<DatosMeteorologicos> datosMunicipioCalidadAireMeteo(String municipio) {
-        return datosMeteorologicosObjetosList.stream().filter(p -> p.getMunicipio().equalsIgnoreCase(municipio)).collect(Collectors.toList());
-    }
+
     /**
      * Metodo que printea la lista de los datos de Datos Meteorologicos pasando un municipio por parametro, llama al metodo datosMunicipioCalidadAireMeteo
      * @param municipio
      */
+    /*
     public static void datosPorMunicipioCalidadAireMeteo(String municipio) {
         System.out.println("Datos de la ciudad: " +municipio);
-        List<DatosMeteorologicos> datos = datosMunicipioCalidadAireMeteo(municipio);
+        List<DatosMeteorologicos> datos = datosMunicipioCalidadAireMeteo(municipio, );
 
         datos.stream().forEach(System.out::println);
 
     }
-    /**
-     * Metodo que filtra calidadAireObjetosList y returnea solo los que sean iguales a el muncipio pasado por parametro
-     * @param municipio
-     * @return
-     */
-    public static List<CalidadAire> datosMunicipioCalidadAire(String municipio) {
-        return calidadAireObjetosList.stream().filter(p -> p.getMunicipio().equalsIgnoreCase(municipio)).collect(Collectors.toList());
-    }
-    /**
-     * Metodo que printea la lista de los datos de Calidad Aire pasando un municipio por parametro, llama al metodo datosMunicipioCalidadAire
-     * @param municipio
-     */
-    public static void datosPorMunicipioCalidadAire(String municipio) {
-        System.out.println("Datos de la ciudad: " +municipio);
-        List<CalidadAire> datos = datosMunicipioCalidadAire(municipio);
-
-        datos.stream().forEach(System.out::println);
-
-    }
-    /**
-     * Metodo que imprime los datos del municipio que hayamos elegido
-     */
-    private void imprimirDatosMeteorologicos(){
-        //datosPorMunicipioCalidadAire("9");
-        //datosPorMunicipioCalidadAireMeteo("9");
-    }
+    */
 
 
     public static void main(String[] args) {
@@ -187,7 +156,6 @@ public class CsvReader {
         c.crearListas();
         c.crearObjetos1();
         c.crearObjetos2();
-        //c.imprimirDatosMeteorologicos();
 
 
     }
