@@ -1,6 +1,7 @@
 package csv;
 
 import Objetos.CalidadAire;
+//import Objetos.CalidadAireEstaciones;
 import Objetos.CalidadAireZonas;
 import Objetos.DatosMeteorologicos;
 
@@ -9,11 +10,12 @@ import java.util.List;
 public class CsvThreadReader {
 
     ThreadGroup tg = new ThreadGroup("lectoresCSV");
-    List<CalidadAire> calidadList;
+    public List<CalidadAire> calidadList;
     List<DatosMeteorologicos> datosList;
     List<CalidadAireZonas> calidadZonasList;
+    //List<CalidadAireEstaciones> aireEstacionesList;
 
-    private void empezar() throws InterruptedException {
+    public void empezar() throws InterruptedException {
         CalidadAireReader car = new CalidadAireReader();
         DatosMeteorologicosReader dmr = new DatosMeteorologicosReader();
 
@@ -29,12 +31,8 @@ public class CsvThreadReader {
         calidadList = car.getCalidadAireObjetosList();
         calidadZonasList = car.getCalidadAireZonasObjetosList();
         datosList = dmr.getDatosMeteorologicosObjetosList();
+        //aireEstacionesList = dmr.getAireEstacionesObjetosList();
 
         System.out.println(calidadList.size()+" "+calidadZonasList.size()+" "+datosList.size());
-    }
-
-    public static void main(String[] args)  throws InterruptedException {
-        CsvThreadReader reader = new CsvThreadReader();
-        reader.empezar();
     }
 }
