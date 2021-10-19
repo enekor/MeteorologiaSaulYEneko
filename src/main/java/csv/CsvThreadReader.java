@@ -15,6 +15,11 @@ public class CsvThreadReader {
     List<CalidadAireZonas> calidadZonasList;
     //List<CalidadAireEstaciones> aireEstacionesList;
 
+    /**
+     * ejecuta ambos hilos para agilizar la lectura de los csv, y, una vez terminados ambos hilos, inicializamos nuestras listas con las listas de objetos
+     * generados en cada hilo
+     * @throws InterruptedException
+     */
     public void empezar() throws InterruptedException {
         CalidadAireReader car = new CalidadAireReader();
         DatosMeteorologicosReader dmr = new DatosMeteorologicosReader();

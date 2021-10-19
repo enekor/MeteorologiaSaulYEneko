@@ -21,7 +21,9 @@ public class CalidadAireReader implements Runnable {
     List<CalidadAire> calidadAireObjetosList = new ArrayList<>();
     List<CalidadAireZonas> calidadAireZonasObjetosList = new ArrayList<>();
 
-
+    /**
+     * creacion de las listas de String donde almacenaremos las lineas del csv correspondiente
+     */
     private void crearListaCalidadAire(){
         String actualPath = System.getProperty("user.dir");
         System.out.println(actualPath);
@@ -43,6 +45,9 @@ public class CalidadAireReader implements Runnable {
 
     }
 
+    /**
+     * creamos los objetos correspondientes a la medicion, a partir de las listas de string del csv
+     */
     private void crearObjetosAire(){
 
         crearListaCalidadAire();
