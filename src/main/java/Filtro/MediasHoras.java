@@ -9,6 +9,11 @@ public class MediasHoras {
 
     private int sumaMediaDias=0;
 
+    /**
+     * Metodo que saca la media de todas las horas que sean validas de Calidad Aire
+     * @param lista
+     * @return Media mensual
+     */
     public int mediaCalidadAire(List<CalidadAire> lista){
 
         lista.forEach(ca ->{
@@ -67,6 +72,11 @@ public class MediasHoras {
         return sumaMediaDias/lista.size();
     }
 
+    /**
+     * Metodo que saca la media de todas las horas que sean validas de Datos Meteorologicos
+     * @param lista
+     * @return Media Mensual
+     */
     public int mediadatosMeteo(List<DatosMeteorologicos> lista){
 
         lista.forEach(ca ->{
