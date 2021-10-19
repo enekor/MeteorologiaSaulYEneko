@@ -1,6 +1,10 @@
+<<<<<<< refs/remotes/origin/develop
 import Filtro.Filtro;
 import csv.CsvThreadReader;
 import Filtro.MediasHoras;
+=======
+import csv.DatosMeteorologicosReader;
+>>>>>>> Auto stash before rebase of "origin/develop"
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
