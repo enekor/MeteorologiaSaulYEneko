@@ -21,7 +21,6 @@ public class CalidadAireReader implements Runnable {
     List<CalidadAire> calidadAireObjetosList = new ArrayList<>();
     List<CalidadAireZonas> calidadAireZonasObjetosList = new ArrayList<>();
 
-
     private void crearListaCalidadAire(){
         String actualPath = System.getProperty("user.dir");
         System.out.println(actualPath);
