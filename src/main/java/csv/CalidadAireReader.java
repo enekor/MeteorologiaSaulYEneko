@@ -34,7 +34,7 @@ public class CalidadAireReader implements Runnable {
 
         try {
             calidadAireList = Files.readAllLines(csvAire);
-            calidadAireZonasList = Files.readAllLines(csvZonas, Charset.forName("Cp1252"));
+            calidadAireZonasList = Files.readAllLines(csvZonas, Charset.forName("windows-1252"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,8 +64,6 @@ public class CalidadAireReader implements Runnable {
                         v21(sc.next()).h22(sc.next()).v22(sc.next()).h23(sc.next()).v23(sc.next()).h24(sc.next()).
                         v24(sc.next()).build());
             }
-            System.out.println("a");
-
         }
 
         for(String a : calidadAireZonasList){

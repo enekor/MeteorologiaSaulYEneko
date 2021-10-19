@@ -1,5 +1,6 @@
 package Filtro;
 
+import Objetos.CalidadAire;
 import Objetos.DatosMeteorologicos;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class Filtro {
      * @param municipio
      * @return
      */
-    public static List<DatosMeteorologicos> datosMunicipioCalidadAireMeteo(String municipio, List<DatosMeteorologicos> datos) {
-        return datos.stream().filter(p -> p.getMunicipio().equalsIgnoreCase(municipio)).collect(Collectors.toList());
+    public List<CalidadAire> datosMunicipioCalidadAireMeteo(String municipio, String magnitud, List<CalidadAire> datos) {
+        return datos.stream().filter(p -> p.getMunicipio().equalsIgnoreCase(municipio)).filter(p -> p.getMagnitud().equalsIgnoreCase(magnitud)).collect(Collectors.toList());
     }
 }
