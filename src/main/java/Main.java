@@ -9,6 +9,6 @@ public class Main {
         System.out.println(c.calidadList.size());
         Filtro f = new Filtro();
         MediasHoras m = new MediasHoras();
-        System.out.println(m.mediaCalidadAire(f.datosMunicipioCalidadAireMeteo("9","14",c.calidadList)));
+        System.out.println(m.mediaCalidadAire(f.datosMunicipioCalidadAireMeteo("9","9",c.calidadList)));
     }
 }
