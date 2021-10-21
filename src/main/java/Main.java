@@ -4,11 +4,9 @@ import Filtro.MediasHoras;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        CsvThreadReader c = new CsvThreadReader();
-        c.empezar();
-        System.out.println(c.calidadList.size());
-        Filtro f = new Filtro();
-        MediasHoras m = new MediasHoras();
-        System.out.println(m.mediaCalidadAire(f.datosMunicipioCalidadAireMeteo("9","9",c.calidadList)));
+        CsvThreadReader ctr = new CsvThreadReader();
+        InfoMeteorologica im = new InfoMeteorologica();
+
+        System.out.println(im.proveedorDeDatos(ctr.getCalidadList(),ctr.getDatosList(),"4458","83"));
     }
 }

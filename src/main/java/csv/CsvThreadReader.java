@@ -4,23 +4,32 @@ import Objetos.CalidadAire;
 //import Objetos.CalidadAireEstaciones;
 import Objetos.CalidadAireZonas;
 import Objetos.DatosMeteorologicos;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class CsvThreadReader {
 
     ThreadGroup tg = new ThreadGroup("lectoresCSV");
-    public List<CalidadAire> calidadList;
-    List<DatosMeteorologicos> datosList;
-    List<CalidadAireZonas> calidadZonasList;
+    private List<CalidadAire> calidadList;
+    private List<DatosMeteorologicos> datosList;
+    private List<CalidadAireZonas> calidadZonasList;
     //List<CalidadAireEstaciones> aireEstacionesList;
 
+    public CsvThreadReader(){
+        try {
+            empezar();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * ejecuta ambos hilos para agilizar la lectura de los csv, y, una vez terminados ambos hilos, inicializamos nuestras listas con las listas de objetos
      * generados en cada hilo
      * @throws InterruptedException
      */
-    public void empezar() throws InterruptedException {
+    private void empezar() throws InterruptedException {
         CalidadAireReader car = new CalidadAireReader();
         DatosMeteorologicosReader dmr = new DatosMeteorologicosReader();
 
@@ -38,6 +47,6 @@ public class CsvThreadReader {
         datosList = dmr.getDatosMeteorologicosObjetosList();
         //aireEstacionesList = dmr.getAireEstacionesObjetosList();
 
-        System.out.println(calidadList.size()+" "+calidadZonasList.size()+" "+datosList.size());
+       // System.out.println(calidadList.size()+" "+calidadZonasList.size()+" "+datosList.size());
     }
 }
