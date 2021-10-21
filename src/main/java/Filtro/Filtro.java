@@ -12,7 +12,11 @@ public class Filtro {
      * @param municipio
      * @return
      */
-    public List<CalidadAire> datosMunicipioCalidadAireMeteo(String municipio, String magnitud, List<CalidadAire> datos) {
+    public List<CalidadAire> filtroCalidadAire(String municipio, String magnitud, List<CalidadAire> datos) {
+        return datos.stream().filter(p -> p.getMunicipio().equalsIgnoreCase(municipio)).filter(p -> p.getMagnitud().equalsIgnoreCase(magnitud)).collect(Collectors.toList());
+    }
+
+    public List<DatosMeteorologicos> filtroDatosMeteo(String municipio, String magnitud, List<DatosMeteorologicos> datos){
         return datos.stream().filter(p -> p.getMunicipio().equalsIgnoreCase(municipio)).filter(p -> p.getMagnitud().equalsIgnoreCase(magnitud)).collect(Collectors.toList());
     }
 }
