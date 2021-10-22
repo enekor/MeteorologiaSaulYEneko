@@ -1,4 +1,4 @@
-package extras;
+package Mapas;
 
 import java.util.HashMap;
 import java.util.Map;

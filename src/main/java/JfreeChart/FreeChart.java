@@ -1,2 +1,3 @@
-package JfreeChart;public class FreeChart {
+package JfreeChart;
+public class FreeChart {
 }

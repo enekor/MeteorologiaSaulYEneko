@@ -1,16 +1,19 @@
+package Filtro;
+
 import Filtro.Filtro;
 import Filtro.MediasHoras;
+import Mapas.EstacionesMapas;
 import Objetos.CalidadAire;
 import Objetos.DatosMeteorologicos;
-import extras.MagnitudMap;
+import Mapas.MagnitudMap;
 
 import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 public class InfoMeteorologica {
     MediasHoras mh = new MediasHoras();
     Filtro f = new Filtro();
+    EstacionesMapas mapas = EstacionesMapas.getInstance();
 
     /**
      *dependiendo de los valores de municipio y magnitud llama a un metodo u otro pasandole por parametro los valores necesarios para que este funcione
@@ -47,7 +50,13 @@ public class InfoMeteorologica {
             returner+=magnitudes.getMapa().get(Integer.parseInt(magnitud))+": \n"+
                     "-Media mensual: "+st.nextToken()+"\n"+
                     "-Maximo del mes: "+st.nextToken()+"\n"+
-                    "-Minimo del mes: "+st.nextToken();
+                    "-Minimo del mes: "+st.nextToken()+"\n"+
+                    "Estacion/es usadas: ";
+
+            while(st.hasMoreTokens()){
+                String estacion = mapas.getCodigoNacional().get(Integer.parseInt(st.nextToken()));
+                returner+=estacion+"\n";
+            }
         }
         return returner;
     }

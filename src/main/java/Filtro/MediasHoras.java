@@ -3,14 +3,15 @@ package Filtro;
 import Objetos.CalidadAire;
 import Objetos.DatosMeteorologicos;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class MediasHoras {
 
     private int sumaMediaDias=0;
+    private List<Double> valores = new ArrayList<>();
+
+    public List<Double> getValores(){return this.valores;}
+
 
     /**
      * a partir de la lista filtrada, sacamos los valores de cada hora
@@ -21,141 +22,170 @@ public class MediasHoras {
         if(lista.isEmpty()){
             return "no hay datos en este municipio";
         }
-        List<Integer> valores = new ArrayList<>();
+        HashSet<String> estaciones = new HashSet<>();
+        String returner="";
 
         lista.forEach(ca ->{
-            Integer sumDia=0;
+            double sumDia=0;
             int noNulos=0;
 
             if(ca.getV01().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH01());
+                sumDia+=Double.parseDouble(ca.getH01());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH01()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH01()));
             }
             if(ca.getV02().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH02());
+                sumDia+=Double.parseDouble(ca.getH02());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH02()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH02()));
             }
             if(ca.getV03().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH03());
+                sumDia+=Double.parseDouble(ca.getH03());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH03()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH03()));
             }
             if(ca.getV04().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH04());
+                sumDia+=Double.parseDouble(ca.getH04());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH04()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH04()));
             }
             if(ca.getV05().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH05());
+                sumDia+=Double.parseDouble(ca.getH05());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH05()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH05()));
             }
             if(ca.getV06().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH06());
+                sumDia+=Double.parseDouble(ca.getH06());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH06()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH06()));
             }
             if(ca.getV07().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH07());
+                sumDia+=Double.parseDouble(ca.getH07());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH07()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH07()));
             }
             if(ca.getV08().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH08());
+                sumDia+=Double.parseDouble(ca.getH08());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH08()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH08()));
             }
             if(ca.getV09().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH09());
+                sumDia+=Double.parseDouble(ca.getH09());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH09()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH09()));
             }
             if(ca.getV10().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH10());
+                sumDia+=Double.parseDouble(ca.getH10());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH10()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH10()));
             }
             if(ca.getV11().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH11());
+                sumDia+=Double.parseDouble(ca.getH11());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH11()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH11()));
             }
             if(ca.getV12().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH12());
+                sumDia+=Double.parseDouble(ca.getH12());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH12()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH12()));
             }
             if(ca.getV13().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH13());
+                sumDia+=Double.parseDouble(ca.getH13());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH13()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH13()));
             }
             if(ca.getV14().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH14());
+                sumDia+=Double.parseDouble(ca.getH14());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH14()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH14()));
             }
             if(ca.getV15().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH15());
+                sumDia+=Double.parseDouble(ca.getH15());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH15()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH15()));
             }
             if(ca.getV16().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH16());
+                sumDia+=Double.parseDouble(ca.getH16());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH16()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH16()));
             }
             if(ca.getV17().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH17());
+                sumDia+=Double.parseDouble(ca.getH17());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH17()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH17()));
             }
             if(ca.getV18().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH18());
+                sumDia+=Double.parseDouble(ca.getH18());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH18()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH18()));
             }
             if(ca.getV19().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH19());
+                sumDia+=Double.parseDouble(ca.getH19());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH19()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH19()));
             }
             if(ca.getV20().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH20());
+                sumDia+=Double.parseDouble(ca.getH20());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH20()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH20()));
             }
             if(ca.getV21().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH21());
+                sumDia+=Double.parseDouble(ca.getH21());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH21()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH21()));
             }
             if(ca.getV22().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH22());
+                sumDia+=Double.parseDouble(ca.getH22());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH22()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH22()));
             }
             if(ca.getV23().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH23());
+                sumDia+=Double.parseDouble(ca.getH23());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH23()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH23()));
             }
             if(ca.getV24().equalsIgnoreCase("V")){
-                sumDia+=Integer.parseInt(ca.getH24());
+                sumDia+=Double.parseDouble(ca.getH24());
                 noNulos += 1;
-                valores.add(Integer.parseInt(ca.getH24()));
+                estaciones.add(ca.getPunto_muestreo());
+                valores.add(Double.parseDouble(ca.getH24()));
             }
 
             sumaMediaDias+=sumDia/noNulos;
 
         });
 
-        Optional<Integer> max = valores.stream().max(Comparator.comparing(v -> v));
-        Optional<Integer> min = valores.stream().min(Comparator.comparing(v -> v));
+        Optional<Double> max = valores.stream().max(Comparator.comparing(v -> v));
+        Optional<Double> min = valores.stream().min(Comparator.comparing(v -> v));
 
-        return sumaMediaDias/lista.size()+" "+max.get()+" "+min.get();
+        returner = sumaMediaDias / lista.size() + " " + max.get() + " " + min.get();
+        for(String s : estaciones){
+            returner+=s+" ";
+        }
+        return returner;
     }
 
     /**
@@ -167,7 +197,9 @@ public class MediasHoras {
         if(lista.isEmpty()){
             return "no hay datos en este municipio";
         }
-        List<Double> valores = new ArrayList<>();
+
+        HashSet<String> estaciones = new HashSet<>();
+        String returner="";
 
         lista.forEach(ca ->{
             double sumDia=0;
@@ -177,144 +209,168 @@ public class MediasHoras {
                 String h =ca.getH01().replace(",",".");
                 sumDia += Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV02().equalsIgnoreCase("V")){
                 String h =ca.getH02().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV03().equalsIgnoreCase("V")){
                 String h =ca.getH03().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV04().equalsIgnoreCase("V")){
                 String h =ca.getH04().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV05().equalsIgnoreCase("V")){
                 String h =ca.getH05().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV06().equalsIgnoreCase("V")){
                 String h =ca.getH06().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV07().equalsIgnoreCase("V")){
                 String h =ca.getH07().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV08().equalsIgnoreCase("V")){
                 String h =ca.getH08().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV09().equalsIgnoreCase("V")){
                 String h =ca.getH09().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV10().equalsIgnoreCase("V")){
                 String h =ca.getH10().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV11().equalsIgnoreCase("V")){
                 String h =ca.getH11().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV12().equalsIgnoreCase("V")){
                 String h =ca.getH12().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV13().equalsIgnoreCase("V")){
                 String h =ca.getH13().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV14().equalsIgnoreCase("V")){
                 String h =ca.getH14().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV15().equalsIgnoreCase("V")){
                 String h =ca.getH15().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV16().equalsIgnoreCase("V")){
                 String h =ca.getH16().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV17().equalsIgnoreCase("V")){
                 String h =ca.getH17().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV18().equalsIgnoreCase("V")){
                 String h =ca.getH18().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV19().equalsIgnoreCase("V")){
                 String h =ca.getH19().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV20().equalsIgnoreCase("V")){
                 String h =ca.getH20().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV21().equalsIgnoreCase("V")){
                 String h =ca.getH21().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV22().equalsIgnoreCase("V")){
                 String h =ca.getH22().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV23().equalsIgnoreCase("V")){
                 String h =ca.getH23().replace(",",".");
                 sumDia+=Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             if(ca.getV24().equalsIgnoreCase("V")) {
                 String h =ca.getH24().replace(",",".");
                 sumDia += Double.parseDouble(h);
                 noNulos += 1;
+                estaciones.add(ca.getPunto_muestreo());
                 valores.add(Double.parseDouble(h));
             }
             sumaMediaDias+=sumDia/noNulos;
@@ -323,6 +379,11 @@ public class MediasHoras {
         Optional<Double> max = valores.stream().max(Comparator.comparing(v -> v));
         Optional<Double> min = valores.stream().min(Comparator.comparing(v -> v));
 
-        return sumaMediaDias/lista.size()+" "+max.get()+" "+min.get();
+        returner = sumaMediaDias / lista.size() + " " + max.get() + " " + min.get();
+        for(String s : estaciones){
+            StringTokenizer st = new StringTokenizer(s,"_");
+            returner+=" "+st.nextToken()+" ";
+        }
+        return returner;
     }
 }
