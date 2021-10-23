@@ -8,9 +8,15 @@ import java.util.*;
 public class MediasHoras {
 
     private int sumaMediaDias=0;
-    private List<Double> valores = new ArrayList<>();
 
-    public List<Double> getValores(){return this.valores;}
+    private static MediasHoras mediaHora = null;
+    private MediasHoras(){}
+    public static MediasHoras getInstance(){
+        if(mediaHora==null){
+            mediaHora = new MediasHoras();
+        }
+        return mediaHora;
+    }
 
 
     /**
@@ -18,10 +24,12 @@ public class MediasHoras {
      * @param lista de objetos calidad aire filtrado
      * @return una string con el orden media-maximo-minimo mensual
      */
-    public String mediaCalidadAire(List<CalidadAire> lista){
+    public List<Object> mediaCalidadAire(List<CalidadAire> lista){
         if(lista.isEmpty()){
-            return "no hay datos en este municipio";
+            List<Object> returnerList = List.of("no hay datos en este municipio");
+            return returnerList;
         }
+        List<Double> valores = new ArrayList<>();
         HashSet<String> estaciones = new HashSet<>();
         String returner="";
 
@@ -185,7 +193,9 @@ public class MediasHoras {
         for(String s : estaciones){
             returner+=s+" ";
         }
-        return returner;
+
+        List<Object> returnerLista = List.of(returner,valores);
+        return returnerLista;
     }
 
     /**
@@ -193,11 +203,12 @@ public class MediasHoras {
      * @param lista de objetos datos meteorologicos filtrado
      * @return una string con el orden media-maximo-minimo mensual
      */
-    public String mediadatosMeteo(List<DatosMeteorologicos> lista){
+    public List<Object> mediadatosMeteo(List<DatosMeteorologicos> lista){
         if(lista.isEmpty()){
-            return "no hay datos en este municipio";
+            List<Object> returnerList = List.of("no hay datos en este municipio");
+            return returnerList;
         }
-
+        List<Double> valores = new ArrayList<>();
         HashSet<String> estaciones = new HashSet<>();
         String returner="";
 
@@ -384,6 +395,7 @@ public class MediasHoras {
             StringTokenizer st = new StringTokenizer(s,"_");
             returner+=" "+st.nextToken()+" ";
         }
-        return returner;
+        List<Object> returnerList = List.of(returner,valores);
+        return returnerList;
     }
 }
