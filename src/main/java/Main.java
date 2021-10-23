@@ -1,13 +1,11 @@
-import Filtro.Filtro;
-import csv.CsvThreadReader;
-import Filtro.MediasHoras;
-import Filtro.InfoMeteorologica;
+import funcional.HTMLCodeGenerator;
+
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        CsvThreadReader ctr = new CsvThreadReader();
-        InfoMeteorologica im = new InfoMeteorologica();
+    public static void main(String[] args) throws InterruptedException, IOException {
 
-        System.out.println(im.proveedorDeDatos(ctr.getCalidadList(),ctr.getDatosList(),"148","83"));
+        HTMLCodeGenerator generator = new HTMLCodeGenerator();
+        System.out.println(generator.devolverMagnitudes("102"));
     }
 }

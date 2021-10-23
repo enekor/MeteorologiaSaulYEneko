@@ -26,7 +26,6 @@ public class CalidadAireReader implements Runnable {
      */
     private void crearListaCalidadAire(){
         String actualPath = System.getProperty("user.dir");
-        System.out.println(actualPath);
         String pathAire = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_mes.csv";
         String pathZonas = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_zonas.csv";
 

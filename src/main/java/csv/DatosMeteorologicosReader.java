@@ -27,7 +27,6 @@ public class DatosMeteorologicosReader implements Runnable{
         String actualPath = System.getProperty("user.dir");
         String pathMeteo = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_meteo_mes.csv";
         String pathEstaciones =  actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_estaciones.csv";
-        System.out.println(pathEstaciones);
 
         Path csvMeteo = Paths.get(pathMeteo);
         Path csvEstaciones = Path.of(pathEstaciones);

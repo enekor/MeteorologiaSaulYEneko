@@ -7,8 +7,16 @@ public class MagnitudMap {
 
     private Map<Integer,String> magnitudes = new HashMap<>();
 
-    public MagnitudMap(){
+    private MagnitudMap(){
         buildMap();
+    }
+    private static MagnitudMap map = null;
+
+    public static MagnitudMap getInstance() {
+        if(map==null){
+            map = new MagnitudMap();
+        }
+        return map;
     }
 
     private void buildMap(){

@@ -13,24 +13,27 @@ import java.util.ArrayList;
 import java.util.List;
 
     public class FreeChart {
-
         private static ChartUtilities ChartUtils;
 
-        public static void main(String[] args) throws IOException {
-            List<Double>totalmenteAlteatoria = new ArrayList<>();
-            for(double i =0; i<=27;i++){
-                double numero = (int)(Math.random() *300+1);
-                totalmenteAlteatoria.add(numero);
+        private FreeChart(){}
+        private static FreeChart chart=null;
+        public static FreeChart getInstance() {
+            if(chart==null){
+                chart = new FreeChart();
             }
+            return chart;
+        }
+
+        public String generarPng(List<Double> valores, String nombre) throws IOException {
             var prueba = new XYSeries("2021");
-            for (int i = 0; i < totalmenteAlteatoria.size(); i++) {
-                prueba.add(i, totalmenteAlteatoria.get(i));
+            for (int i = 0; i < valores.size(); i++) {
+                prueba.add(i, valores.get(i));
             }
             var dataset = new XYSeriesCollection();
             dataset.addSeries(prueba);
 
             JFreeChart chart = ChartFactory.createXYLineChart(
-                    "FreeChart Prueba",
+                    nombre,
                     "Dias",
                     "Magnitud",
                     dataset,
@@ -39,8 +42,9 @@ import java.util.List;
                     true,
                     false
             );
-            String path = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"graficas"+File.separator+"algo.png";
+            String path = System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"graficas"+File.separator+nombre+".png";
             ChartUtilities.saveChartAsPNG(new File(path), chart, 450, 400);
+            return path;
         }
     }
 
