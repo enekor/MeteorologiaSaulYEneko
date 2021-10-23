@@ -71,8 +71,11 @@ public class DatosMeteorologicosReader implements Runnable{
             StringTokenizer st = new StringTokenizer(a,";");
 
             String codigo = st.nextToken();
+            int codigoMunicipio = Integer.parseInt(codigo.substring(2,5));
+            System.out.println(codigoMunicipio);
             st.nextElement();
             String nombre = st.nextToken();
+            em.fillCodigoMunicipio(codigoMunicipio,nombre);
             em.fillCodigoNacional(Integer.parseInt(codigo),nombre);
         }
     }

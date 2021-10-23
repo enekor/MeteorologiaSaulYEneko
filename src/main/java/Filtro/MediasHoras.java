@@ -191,7 +191,8 @@ public class MediasHoras {
 
         returner = sumaMediaDias / lista.size() + " " + max.get() + " " + min.get();
         for(String s : estaciones){
-            returner+=s+" ";
+            StringTokenizer st = new StringTokenizer(s,"_");
+            returner+=" "+st.nextToken()+" ";
         }
 
         List<Object> returnerLista = List.of(returner,valores);
