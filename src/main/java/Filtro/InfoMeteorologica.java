@@ -53,14 +53,14 @@ public class InfoMeteorologica {
 
             nombre = magnitudes.getMapa().get(Integer.parseInt(magnitud));
             returner+=nombre+": \n"+
-                    "-Media mensual: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
-                    "-Maximo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
-                    "-Minimo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
+                    "<p>-Media mensual: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
+                    "-Maximo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
+                    "-Minimo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
                     "Estacion/es usadas: ";
 
             while(st.hasMoreTokens()){
                 String estacion = mapas.getCodigoNacional().get(Integer.parseInt(st.nextToken()));
-                returner+=estacion+"\n";
+                returner+=" | "+estacion;
             }
         }
         else if(Integer.parseInt(magnitud)>=81 && Integer.parseInt(magnitud)!=431){
@@ -72,15 +72,16 @@ public class InfoMeteorologica {
             valores = (List<Double>) returnDatos.get(1);
             StringTokenizer st = new StringTokenizer((String)returnDatos.get(0));
             returner+=magnitudes.getMapa().get(Integer.parseInt(magnitud))+": \n"+
-                    "-Media mensual: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
-                    "-Maximo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
-                    "-Minimo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
-                    "Estacion/es usadas: ";
+                    "<p>-Media mensual: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
+                    "-Maximo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
+                    "-Minimo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
+                    "Estacion/es usadas:";
 
             while(st.hasMoreTokens()){
                 String estacion = mapas.getCodigoNacional().get(Integer.parseInt(st.nextToken()));
-                returner+=estacion+"\n";
+                returner+=" | "+estacion;
             }
+            returner+="</p>"
         }
         return returner;
     }
