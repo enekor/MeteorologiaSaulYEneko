@@ -17,13 +17,17 @@ public class CsvThreadReader {
     private List<CalidadAireZonas> calidadZonasList;
     //List<CalidadAireEstaciones> aireEstacionesList;
 
-    public CsvThreadReader(){
-        try {
-            empezar();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private static CsvThreadReader reader = null;
+    private CsvThreadReader() throws InterruptedException {
+        empezar();
     }
+    public static CsvThreadReader getInstance() throws InterruptedException {
+        if(reader==null){
+            reader = new CsvThreadReader();
+        }
+        return reader;
+    }
+
     /**
      * ejecuta ambos hilos para agilizar la lectura de los csv, y, una vez terminados ambos hilos, inicializamos nuestras listas con las listas de objetos
      * generados en cada hilo
