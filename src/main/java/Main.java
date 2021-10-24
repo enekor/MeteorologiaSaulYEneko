@@ -1,46 +1,70 @@
 import Mapas.EstacionesMapas;
-import csv.DatosMeteorologicosReader;
-import html.HTMLCodeGenerator;
-import html.HTMLGenerator;
+import csv.CsvThreadReader;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
 
 import java.io.File;
-import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException, IOException {
-        String municipio=null;
-        String uri=null;
+    public static void main(String[] args) throws IOException {
+        String municipio = null;
+        String uri = null;
+        CsvThreadReader ctr = new CsvThreadReader();
         EstacionesMapas em = EstacionesMapas.getInstance();
-
-        try{
-            municipio = args[0];
-            uri = args[1];
-            if(municipio==null){
-                System.out.println("no se ha especificado el municipio");
+        Scanner sc = new Scanner(System.in);
+        Funcional funcional = Funcional.getInstance();
+/*
+        if (args.length < 2 || args.length > 2) {
+            System.out.println("datos introducidos no validos");
+            if (args.length < 2) {
+                System.out.println("datos esperados: municipio uri");
+            } else {
+                System.out.println("Recuerde que si quiere buscar un municipio compuesto por mas de una palabra tendra que meterla entre comillas");
             }
-            if(uri==null){
-                System.out.println("no se ha especificado la ruta de guardado");
+        } else {
+            if (em.getCodigoMunicipio().containsValue(municipio)) {
+
+                String codigoMunicipio = null;
+
+                for (Map.Entry<Integer, String> entry : em.getCodigoMunicipio().entrySet()) {
+                    if (Objects.equals(entry.getValue(), municipio)) {
+                        codigoMunicipio = String.valueOf(entry.getKey());
+                    }
+                    File directorio = new File(uri);
+                    if (!directorio.exists()) {
+                        directorio.mkdirs();
+                    }
+                    directorio = new File(uri + File.separator + municipio + "html");
+                    if (directorio.isFile()) {
+                        System.out.println("el archivo ya existe, ¿quiere reemplazarlo? (s=si, n=no)");
+                        String ans = sc.next();
+                        switch (ans) {
+                            case "si":
+                            case "Si":
+                            case "s":
+                            case "S": {
+                                funcional.start(codigoMunicipio, uri);
+                                System.out.println("archivo html generado con exito");
+                                break;
+                            }
+                            case "n":
+                            case "N":
+                            case "no":
+                            case "No": {
+                                System.out.println("proceda a quitar el archivo de la carpeta de destino y vuelva a ejecutar de nuevo el programa por favor");
+                            }
+                        }
+                    }
+                }
             }
-            if(!em.getCodigoMunicipio().containsValue(municipio)){
-                System.out.println("municipio no valido");
+            else {
+                System.out.println("municipio indicado no existente, pruebe con otro, por ejemplo, "+em.getCodigoMunicipio().get(9));
             }
-        }catch(Exception e){
+        }*/
 
-        }
-
-        Long startTime = System.currentTimeMillis();
-
-        HTMLCodeGenerator generator = new HTMLCodeGenerator();
-        HTMLGenerator htmlGenerator = new HTMLGenerator();
-        DatosMeteorologicosReader dmr = DatosMeteorologicosReader.getInstance();
-
-        municipio=em.getCodigoMunicipio().get(municipio);
-        String html = (generator.devolverMagnitudes(municipio));
-
-        Long finishTime = (System.currentTimeMillis()-startTime)/1000;
-        htmlGenerator.htmlGenerator(municipio,html,uri,finishTime,
-                Integer.parseInt(dmr.getDatosMeteorologicosObjetosList().get(4).getAno()),
-                Integer.parseInt(dmr.getDatosMeteorologicosObjetosList().get(4).getMes()),
-                Integer.parseInt(dmr.getDatosMeteorologicosObjetosList().get(4).getDia()));
+        funcional.start("9", "C:\\Users\\eneko\\Desktop\\prueba");
     }
 }

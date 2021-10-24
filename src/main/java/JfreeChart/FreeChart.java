@@ -1,5 +1,6 @@
 package JfreeChart;
 
+import Mapas.EstacionesMapas;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
     public class FreeChart {
+        EstacionesMapas em = EstacionesMapas.getInstance();
         private static ChartUtilities ChartUtils;
 
         private FreeChart(){}
@@ -25,8 +27,15 @@ import java.util.List;
             return chart;
         }
 
-        public String generarPng(List<Double> valores, String nombre) throws IOException {
-            String path = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "graficas" + File.separator + nombre + ".png";
+        public String generarPng(List<Double> valores, String nombre,String uri) throws IOException {
+
+            String path = uri+File.separator+"resources"+File.separator+"graficas"+File.separator+nombre+".png";
+            File dir = new File(path);
+            if(!dir.getParentFile().exists()){
+                dir.mkdirs();
+                dir.createNewFile();
+            }
+
             if (nombre.equalsIgnoreCase("precipitacion")) {
                 HistogramDataset dataset = new HistogramDataset();
                 double[] prueba = new double[valores.size()];
