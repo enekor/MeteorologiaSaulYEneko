@@ -30,8 +30,8 @@ public class CsvThreadReader {
      * @throws InterruptedException
      */
     private void empezar() throws InterruptedException {
-        CalidadAireReader car = new CalidadAireReader();
-        DatosMeteorologicosReader dmr = new DatosMeteorologicosReader();
+        CalidadAireReader car = CalidadAireReader.getInstance();
+        DatosMeteorologicosReader dmr = DatosMeteorologicosReader.getInstance();
 
         Thread hilo1 = new Thread(tg,car);
         Thread hilo2 = new Thread(tg,dmr);

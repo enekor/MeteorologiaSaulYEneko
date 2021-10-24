@@ -23,6 +23,15 @@ public class DatosMeteorologicosReader implements Runnable{
     List<DatosMeteorologicos> datosMeteorologicosObjetosList = new ArrayList<>();
     List<String> estacionesList;
 
+    private static DatosMeteorologicosReader dmr = null;
+    private DatosMeteorologicosReader(){}
+    public static DatosMeteorologicosReader getInstance(){
+        if(dmr==null){
+            dmr=new DatosMeteorologicosReader();
+        }
+        return dmr;
+    }
+
     /**
      * cramos las lista de datos a partir de la informacion de los csv
      */

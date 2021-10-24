@@ -21,6 +21,15 @@ public class CalidadAireReader implements Runnable {
     List<CalidadAire> calidadAireObjetosList = new ArrayList<>();
     List<CalidadAireZonas> calidadAireZonasObjetosList = new ArrayList<>();
 
+    private static CalidadAireReader car = null;
+    private CalidadAireReader(){}
+    public static CalidadAireReader getInstance(){
+        if(car==null){
+            car=new CalidadAireReader();
+        }
+        return car;
+    }
+
     /**
      * creacion de las listas de String donde almacenaremos las lineas del csv correspondiente
      */
