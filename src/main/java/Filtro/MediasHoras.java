@@ -204,7 +204,7 @@ public class MediasHoras {
      * @param lista de objetos datos meteorologicos filtrado
      * @return una string con el orden media-maximo-minimo mensual
      */
-    public List<Object> mediadatosMeteo(List<DatosMeteorologicos> lista){
+    public List<Object> mediaDatosMeteo(List<DatosMeteorologicos> lista){
         if(lista.isEmpty()){
             List<Object> returnerList = List.of("no hay datos en este municipio");
             return returnerList;

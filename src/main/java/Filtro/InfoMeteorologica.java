@@ -45,43 +45,46 @@ public class InfoMeteorologica {
         if(Integer.parseInt(magnitud)<81 || Integer.parseInt(magnitud)==431){
             List<Object> returnDatos=datosCalidad(datosAire,municipio,magnitud);
             if(returnDatos.get(0).equals("no hay datos en este municipio")){
-                return returnDatos.get((0))+" sobre "+magnitudes.getMapa().get(Integer.parseInt(magnitud));
+                return "<br/><h2 class='error'>"+returnDatos.get((0))+" sobre "+magnitudes.getMapa().get(Integer.parseInt(magnitud))+"</h2>";
             }
 
             valores = (List<Double>) returnDatos.get(1);
             StringTokenizer st = new StringTokenizer((String)returnDatos.get(0));
 
             nombre = magnitudes.getMapa().get(Integer.parseInt(magnitud));
-            returner+=nombre+": \n"+
-                    "<p>-Media mensual: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
-                    "-Maximo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
-                    "-Minimo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
+            returner+="<br/><h2>"+nombre+":</h2> \n"+
+                    "<pre>-Media mensual: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
+                    "-Maximo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
+                    "-Minimo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
                     "Estacion/es usadas: ";
 
             while(st.hasMoreTokens()){
                 String estacion = mapas.getCodigoNacional().get(Integer.parseInt(st.nextToken()));
                 returner+=" | "+estacion;
             }
+            returner+="</pre>";
         }
-        else if(Integer.parseInt(magnitud)>=81 && Integer.parseInt(magnitud)!=431){
+        if(Integer.parseInt(magnitud)>=81 && Integer.parseInt(magnitud)!=431){
             List<Object> returnDatos = datosMeteorologicos(datosMeteo,municipio,magnitud);
             if(returnDatos.get(0).equals("no hay datos en este municipio")){
-                return returnDatos.get(0)+" sobre "+magnitudes.getMapa().get(Integer.parseInt(magnitud));
+                return "<br/><h2 class='error'>"+returnDatos.get(0)+" sobre "+magnitudes.getMapa().get(Integer.parseInt(magnitud))+"</h2>";
             }
 
             valores = (List<Double>) returnDatos.get(1);
             StringTokenizer st = new StringTokenizer((String)returnDatos.get(0));
-            returner+=magnitudes.getMapa().get(Integer.parseInt(magnitud))+": \n"+
-                    "<p>-Media mensual: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
-                    "-Maximo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
-                    "-Minimo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"/t\n"+
+
+            nombre = magnitudes.getMapa().get(Integer.parseInt(magnitud));
+            returner+="<h2>"+magnitudes.getMapa().get(Integer.parseInt(magnitud))+":</h2> \n"+
+                    "<pre>-Media mensual: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
+                    "-Maximo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
+                    "-Minimo del mes: "+st.nextToken()+" "+unidades.getUdMedida().get(Integer.parseInt(magnitud))+"\n"+
                     "Estacion/es usadas:";
 
             while(st.hasMoreTokens()){
                 String estacion = mapas.getCodigoNacional().get(Integer.parseInt(st.nextToken()));
                 returner+=" | "+estacion;
             }
-            returner+="</p>"
+            returner+="</pre>";
         }
         return returner;
     }
@@ -94,7 +97,7 @@ public class InfoMeteorologica {
      * @return una string en orden media max min
      */
     private List<Object> datosMeteorologicos(List<DatosMeteorologicos> datos, String municipio, String magnitud){
-        return mh.mediadatosMeteo(f.filtroDatosMeteo(municipio,magnitud,datos));
+        return mh.mediaDatosMeteo(f.filtroDatosMeteo(municipio,magnitud,datos));
     }
 
     /**
