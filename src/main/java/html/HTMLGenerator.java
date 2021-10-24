@@ -1,6 +1,7 @@
 package html;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
@@ -8,6 +9,8 @@ public class HTMLGenerator {
 
     private  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     private LocalDateTime now = LocalDateTime.now();
+    private LocalDate nowSinHora = LocalDate.now();
+    private String fileStart="";
     private String htmlStart ="<html>\n" +
             "    <head>\n" +
             "        <title>Datos Meteorologicos</title>\n" +
@@ -27,9 +30,13 @@ public class HTMLGenerator {
      * @param uri donde se guardara el archivo html generado
      * @param tiempoNecesitado para generar el informe
      */
-    public void htmlGenerator(String municipio,String texto, String uri,Long tiempoNecesitado){
+    public void htmlGenerator(String municipio,String texto, String uri,Long tiempoNecesitado, int anio, int mes, int dia){
+        fileStart+="<pre class='inicio'>Ciudad:"+municipio+
+                "Medicion iniciada el "+dia+"/"+mes+"/"+anio+"\br"+
+                "Medicion finalizada el "+dtf.format(nowSinHora)+"</pre>";
         html = new File(uri+File.separator+municipio+".html");
-        String finish = "<p class='generado'>Informe generado el dia "+dtf.format(now)+" en "+tiempoNecesitado+" segundos";
+        String finish = "<p class='generado'>Informe generado el dia "+dtf.format(now)+" en "+tiempoNecesitado+" segundos</p>\n" +
+                "creadores: Eneko Rebollo y Saul Mellado";
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(html));
             bw.write(htmlStart+texto+htmlFinish+finish);

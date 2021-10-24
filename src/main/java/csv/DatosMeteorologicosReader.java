@@ -23,6 +23,9 @@ public class DatosMeteorologicosReader implements Runnable{
     List<DatosMeteorologicos> datosMeteorologicosObjetosList = new ArrayList<>();
     List<String> estacionesList;
 
+    /**
+     * cramos las lista de datos a partir de la informacion de los csv
+     */
     private void crearListaDatos(){
         String actualPath = System.getProperty("user.dir");
         String pathMeteo = actualPath+ File.separator+"Datos"+File.separator+"calidad_aire_datos_meteo_mes.csv";
@@ -40,6 +43,9 @@ public class DatosMeteorologicosReader implements Runnable{
         }
     }
 
+    /**
+     * creamos la lista de objetos a partir de la lista de datos y rellenamos los mapas de estaciones
+     */
     private void crearObjetoDatos(){
 
         crearListaDatos();

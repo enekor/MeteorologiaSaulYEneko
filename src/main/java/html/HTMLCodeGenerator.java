@@ -20,7 +20,7 @@ public class HTMLCodeGenerator {
     /**
      * recorremos una array de 89 posiciones viendo si la i coincide con algun codigo de municipio, si coincide, lo pasa a generar los datos, y, si estos datos tienen
      * unos valores asociados, es decir, no es una medicion sin valores, le genera una etiqueta html y suma la String a la String donde se almacena todo el
-     * codigo del cuerpo del html
+     * codigo del cuerpo del html, y luego lo mismo conla medicion 431 (no se iba a hacer un for de 431 solo para esa medicion)
      * @param municipio al que hace referencia el codigo
      * @return el codigo html con/sin la etiqueta imagen
      * @throws IOException si el generador de imagen tiene problemas para guardar la imagen
