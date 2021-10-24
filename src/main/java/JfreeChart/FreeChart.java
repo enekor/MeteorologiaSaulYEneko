@@ -29,12 +29,7 @@ import java.util.List;
 
         public String generarPng(List<Double> valores, String nombre,String uri) throws IOException {
 
-            String path = uri+File.separator+"resources"+File.separator+"graficas"+File.separator+nombre+".png";
-            File dir = new File(path);
-            if(!dir.getParentFile().exists()){
-                dir.mkdirs();
-                dir.createNewFile();
-            }
+            String path = uri+File.separator+nombre+".png";
 
             if (nombre.equalsIgnoreCase("precipitacion")) {
                 HistogramDataset dataset = new HistogramDataset();

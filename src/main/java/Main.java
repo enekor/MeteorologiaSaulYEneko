@@ -12,12 +12,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String municipio = null;
         String uri = null;
+
         CsvThreadReader ctr = new CsvThreadReader();
         EstacionesMapas em = EstacionesMapas.getInstance();
         Scanner sc = new Scanner(System.in);
         Funcional funcional = Funcional.getInstance();
-/*
-        if (args.length < 2 || args.length > 2) {
+
+        /*if (args.length < 2 || args.length > 2) {
             System.out.println("datos introducidos no validos");
             if (args.length < 2) {
                 System.out.println("datos esperados: municipio uri");
