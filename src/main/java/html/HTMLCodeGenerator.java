@@ -25,7 +25,7 @@ public class HTMLCodeGenerator {
      * @return el codigo html con/sin la etiqueta imagen
      * @throws IOException si el generador de imagen tiene problemas para guardar la imagen
      */
-    public String devolverMagnitudes(String municipio) throws IOException {
+    public String devolverMagnitudes(String municipio, String uri) throws IOException {
 
         for (int i = 0; i<=89;i++){
             if(map.getMapa().containsKey(i)){
@@ -35,7 +35,7 @@ public class HTMLCodeGenerator {
                 List<Double> valores= im.getValores();
                 if(html.length()>90){
                     if(valores!=null) {
-                        String imagenGenerada = fChart.generarPng(valores, im.getNombre());
+                        String imagenGenerada = fChart.generarPng(valores, im.getNombre(),uri);
                         String imagen = "<img src='" +
                                 imagenGenerada+
                                 "'>";
@@ -51,7 +51,7 @@ public class HTMLCodeGenerator {
         List<Double> valores= im.getValores();
         if(html.length()>90){
             if(valores!=null) {
-                String imagenGenerada = fChart.generarPng(valores, im.getNombre());
+                String imagenGenerada = fChart.generarPng(valores, im.getNombre(),uri);
                 String imagen = "<img src='" +
                         imagenGenerada+
                         "'>";

@@ -3,7 +3,6 @@ package html;
 import Mapas.EstacionesMapas;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
@@ -18,7 +17,7 @@ public class HTMLGenerator {
     private String htmlStart ="<html>\n" +
             "    <head>\n" +
             "        <title>Datos Meteorologicos</title>\n" +
-            "        <link rel='stylesheet' href='meteorologia.css' type='text/css'/>\n" +
+            "        <link rel='stylesheet' href='"+System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"meteorologia.css' type='text/css'/>\n" +
             "\n" +
             "    </head>\n" +
             "    <body>\n";
@@ -39,7 +38,7 @@ public class HTMLGenerator {
                 "\nMedicion iniciada el "+dia+"/"+mes+"/"+anio+"\n"+
                 "Medicion finalizada el "+nowSinHora+"\n</pre>";
 
-        html = new File(uri+File.separator+municipio+".html");
+        html = new File(uri+File.separator+em.getCodigoMunicipio().get(Integer.parseInt(municipio))+".html");
 
         String finish = "<p class='generado'>Informe generado el dia "+dtf.format(now)+" en "+tiempoNecesitado+" segundos</p>\n" +
                 "creadores: Eneko Rebollo y Saul Mellado";
