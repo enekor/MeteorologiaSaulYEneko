@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Funcional {
 
@@ -37,6 +38,7 @@ public class Funcional {
         HTMLGenerator htmlGenerator = new HTMLGenerator();
         DatosMeteorologicosReader dmr = DatosMeteorologicosReader.getInstance();
 
+        checkFile(uri,municipio);
         municipioExists(municipio);
         crearCarpeta(uri);
         if (codMunicipio==null){
@@ -68,6 +70,20 @@ public class Funcional {
         File dir = new File(uri);
         if (!dir.exists()){
             dir.mkdirs();
+        }
+    }
+
+    private void checkFile(String uri,String municipio){
+        File file = new File(uri+File.separator+municipio+".html");
+        if(file.exists()){
+            System.out.println("parece que ya existe el archivo");
+            System.out.println("quiere reemplazar el archivo existente? si/no");
+            Scanner sc = new Scanner(System.in);
+            String ans = sc.next();
+            if(ans.equalsIgnoreCase("no")){
+                System.out.println("proceda a sacar de la carpeta el archivo");
+                System.exit(0);
+            }
         }
     }
 }
