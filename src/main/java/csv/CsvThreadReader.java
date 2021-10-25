@@ -40,11 +40,11 @@ public class CsvThreadReader {
         Thread hilo1 = new Thread(tg,car);
         Thread hilo2 = new Thread(tg,dmr);
 
+
         hilo1.start();
         hilo2.start();
         hilo1.join();
         hilo2.join();
-
 
         calidadList = car.getCalidadAireObjetosList();
         calidadZonasList = car.getCalidadAireZonasObjetosList();

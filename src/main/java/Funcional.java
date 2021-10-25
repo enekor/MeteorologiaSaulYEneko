@@ -61,6 +61,10 @@ public class Funcional {
 
     }
 
+    /**
+     * vemos si existe el municipio pasado por parametro y si existe guardamos la el codigo asocuiado a este
+     * @param municipio del parametro
+     */
     private void municipioExists(String municipio) {
         EstacionesMapas em = EstacionesMapas.getInstance();
         if (em.getCodigoMunicipio().containsValue(municipio)) {
@@ -72,6 +76,10 @@ public class Funcional {
         }
     }
 
+    /**
+     * miramos si existe la carpeta solicitada para guardar el html, y, si nok existe, la creamos
+     * @param uri
+     */
     private void crearCarpeta(String uri){
         File dir = new File(uri);
         if (!dir.exists()){
@@ -79,6 +87,11 @@ public class Funcional {
         }
     }
 
+    /**
+     * miramos si el archivo ya exste, y preguntamos si existe preguntamos si desea sobreescribirlo, en caso negativo se cierra el problema
+     * @param uri donde estaria el fichero
+     * @param municipio nombre del municipio
+     */
     private void checkFile(String uri,String municipio){
         File file = new File(uri+File.separator+municipio+".html");
         if(file.exists()){
@@ -93,6 +106,11 @@ public class Funcional {
         }
     }
 
+    /**
+     * ejecurtamos el html una vez se ha generado
+     * @param uri localizacion del archivo
+     * @param municipio nombre del municipio asociado al archivo
+     */
     private void ejecutarHtml(String uri, String municipio){
         String urii = uri+File.separator+municipio+".html";
         File htmlFile = new File(urii);

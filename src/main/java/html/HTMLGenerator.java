@@ -17,7 +17,8 @@ public class HTMLGenerator {
     private String htmlStart ="<html>\n" +
             "    <head>\n" +
             "        <title>Datos Meteorologicos</title>\n" +
-            "        <link rel='stylesheet' href='"+System.getProperty("user.dir")+File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"meteorologia.css' type='text/css'/>\n" +
+            "        <link rel='stylesheet' href='"+System.getProperty("user.dir")+File.separator+"src"+File.separator+
+                      "main"+File.separator+"resources"+File.separator+"meteorologia.css' type='text/css'/>\n" +
             "\n" +
             "    </head>\n" +
             "    <body>\n";

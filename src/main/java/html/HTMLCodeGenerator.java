@@ -32,7 +32,7 @@ public class HTMLCodeGenerator {
 
         for (int i = 0; i<=89;i++){
             if(map.getMapa().containsKey(i)){
-                String html="<p>"+im.proveedorDeDatos(ctr.getCalidadList(),ctr.getDatosList(),municipio,String.valueOf(i))+"</p>";
+                String html=im.proveedorDeDatos(ctr.getCalidadList(),ctr.getDatosList(),municipio,String.valueOf(i));
 
                 respuesta+=html+"\n";
                 List<Double> valores= im.getValores();
@@ -48,7 +48,7 @@ public class HTMLCodeGenerator {
             }
         }
 
-        String html="<p>"+im.proveedorDeDatos(ctr.getCalidadList(),ctr.getDatosList(),municipio,String.valueOf(431))+"</p>";
+        String html=im.proveedorDeDatos(ctr.getCalidadList(),ctr.getDatosList(),municipio,String.valueOf(431));
 
         respuesta+=html+"\n";
         List<Double> valores= im.getValores();
