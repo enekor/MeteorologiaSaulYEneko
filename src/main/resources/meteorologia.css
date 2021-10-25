@@ -1,0 +1,20 @@
+body{
+    background-color: rgb(33, 33, 33);
+    margin-left: 40%;
+}
+h2{
+    color: blue;
+    font-weight: bold;
+    font-style: italic;
+}
+.error{
+    color: red;
+}
+.generado{
+    font-style: italic;
+}
+.inicio{
+    font-size: x-large;
+    font-weight: bold;
+    color: blue;
+}
