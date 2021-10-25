@@ -22,6 +22,11 @@ public class EstacionesMapas {
     private Map<Integer,String> codigoMunicipio = new LinkedHashMap<>();
     private Map<Integer,String> codigoNacional = new LinkedHashMap<>();
 
+    /**
+     * rellenar los mapas
+     * @param codigo de la estacion/municipio
+     * @param municipio /estacion linkeado al codigo
+     */
     public void fillCodigoMunicipio(int codigo, String municipio){
         codigoMunicipio.put(codigo,municipio);
     }
