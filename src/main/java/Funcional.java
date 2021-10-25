@@ -4,6 +4,7 @@ import csv.DatosMeteorologicosReader;
 import html.HTMLCodeGenerator;
 import html.HTMLGenerator;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
@@ -37,6 +38,7 @@ public class Funcional {
         DatosMeteorologicosReader dmr = DatosMeteorologicosReader.getInstance();
 
         municipioExists(municipio);
+        crearCarpeta(uri);
         if (codMunicipio==null){
             System.out.println("municipio no encontrado");
         }
@@ -59,6 +61,13 @@ public class Funcional {
                     codMunicipio = String.valueOf(entry.getKey());
                 }
             }
+        }
+    }
+
+    private void crearCarpeta(String uri){
+        File dir = new File(uri);
+        if (!dir.exists()){
+            dir.mkdirs();
         }
     }
 }

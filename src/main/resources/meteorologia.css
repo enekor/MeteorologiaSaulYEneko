@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(185, 185, 185);
+    background-color: rgb(33, 33, 33);
     margin-left: 40%;
 }
 h2{
@@ -14,6 +14,7 @@ h2{
     font-style: italic;
 }
 .inicio{
-    font-size: medium;
+    font-size: x-large;
     font-weight: bold;
+    color: blue;
 }

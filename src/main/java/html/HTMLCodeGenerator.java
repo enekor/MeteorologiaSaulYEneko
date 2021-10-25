@@ -38,7 +38,7 @@ public class HTMLCodeGenerator {
                 List<Double> valores= im.getValores();
                 if(html.length()>90){
                     if(valores!=null) {
-                        String imagenGenerada = fChart.generarPng(valores, im.getNombre(),uri);
+                        String imagenGenerada = fChart.generarPng(valores, im.getNombre(),uri,municipio);
                         String imagen = "<img src='" +
                                 imagenGenerada+
                                 "'>";
@@ -54,7 +54,7 @@ public class HTMLCodeGenerator {
         List<Double> valores= im.getValores();
         if(html.length()>90){
             if(valores!=null) {
-                String imagenGenerada = fChart.generarPng(valores, im.getNombre(),uri);
+                String imagenGenerada = fChart.generarPng(valores, im.getNombre(),uri,municipio);
                 String imagen = "<img src='" +
                         imagenGenerada+
                         "'>";
