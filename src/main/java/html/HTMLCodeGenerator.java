@@ -13,9 +13,12 @@ public class HTMLCodeGenerator {
     String respuesta="";
 
     MagnitudMap map = MagnitudMap.getInstance();
-    CsvThreadReader ctr = new CsvThreadReader();
+    CsvThreadReader ctr = CsvThreadReader.getInstance();
     InfoMeteorologica im = InfoMeteorologica.getInstance();
     FreeChart fChart = FreeChart.getInstance();
+
+    public HTMLCodeGenerator() throws InterruptedException {
+    }
 
     /**
      * recorremos una array de 89 posiciones viendo si la i coincide con algun codigo de municipio, si coincide, lo pasa a generar los datos, y, si estos datos tienen
