@@ -4,9 +4,11 @@ import csv.DatosMeteorologicosReader;
 import html.HTMLCodeGenerator;
 import html.HTMLGenerator;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Funcional {
 
@@ -30,15 +32,24 @@ public class Funcional {
      */
     public void start(String municipio, String uri) throws IOException, InterruptedException {
         Long startTime = System.currentTimeMillis();
+        Scanner sc = new Scanner(System.in);
         EstacionesMapas em = EstacionesMapas.getInstance();
         CsvThreadReader ctr = CsvThreadReader.getInstance();
         HTMLCodeGenerator generator = new HTMLCodeGenerator();
         HTMLGenerator htmlGenerator = new HTMLGenerator();
         DatosMeteorologicosReader dmr = DatosMeteorologicosReader.getInstance();
 
+        if(dirExists(municipio,uri)){
+            System.out.println("quieres reemplazar el archivo existente? si/no");
+            String ans = sc.next();
+            if(ans.equalsIgnoreCase("no")){
+                System.out.println("proceda a guardar el archivo en otro directorio");
+                System.exit(0);
+        }
         municipioExists(municipio);
         if (codMunicipio==null){
             System.out.println("municipio no encontrado");
+            }
         }
         else {
             String html = (generator.devolverMagnitudes(codMunicipio, uri));
@@ -60,5 +71,13 @@ public class Funcional {
                 }
             }
         }
+    }
+
+    private boolean dirExists(String municipio,String uri){
+        File archivo = new File(uri+File.separator+municipio+".html");
+        if(!archivo.exists()){
+            return false;
+        }
+        else return true;
     }
 }
