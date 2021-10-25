@@ -1,7 +1,11 @@
 import Mapas.EstacionesMapas;
 import csv.CsvThreadReader;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -18,7 +22,5 @@ public class Main {
         else{
             System.out.println("valores aportados no validos, se busca: municipio uri");
         }
-
-        //funcional.start("9", "C:\\Users\\eneko\\Desktop\\prueba");
     }
 }

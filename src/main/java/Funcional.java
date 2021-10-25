@@ -4,8 +4,11 @@ import csv.DatosMeteorologicosReader;
 import html.HTMLCodeGenerator;
 import html.HTMLGenerator;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -53,6 +56,9 @@ public class Funcional {
                     Integer.parseInt(dmr.getDatosMeteorologicosObjetosList().get(4).getMes()),
                     Integer.parseInt(dmr.getDatosMeteorologicosObjetosList().get(4).getDia()));
         }
+
+        ejecutarHtml(uri,municipio);
+
     }
 
     private void municipioExists(String municipio) {
@@ -84,6 +90,16 @@ public class Funcional {
                 System.out.println("proceda a sacar de la carpeta el archivo");
                 System.exit(0);
             }
+        }
+    }
+
+    private void ejecutarHtml(String uri, String municipio){
+        String urii = uri+File.separator+municipio+".html";
+        File htmlFile = new File(urii);
+        try {
+            Desktop.getDesktop().browse(htmlFile.toURI());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
